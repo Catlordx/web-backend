@@ -1,19 +1,17 @@
 package org.jianwen.webbackend.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.sql.Timestamp;
-
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
-    private String username;
-    private String password;
-    private String fullName;
-    private String email;
-    private String phone;
-    private String role;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private String cardId;   // 校园卡号
+    private String name;     // 姓名
+    private String userType; // 用户类型（student / staff）
+    private String email;    // 邮箱
+    private String phone;    // 手机号码
 }
+

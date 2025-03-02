@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FilterConfig {
+    // FIX Raw use of parameterized class 'FilterRegistrationBean'
     @Bean
     public FilterRegistrationBean jwtFilter() {
         FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();

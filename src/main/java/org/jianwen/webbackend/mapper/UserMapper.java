@@ -5,37 +5,26 @@ import org.jianwen.webbackend.model.User;
 
 import java.util.List;
 
+@Mapper
 public interface UserMapper {
-    @Insert("INSERT INTO Users (UserID, Username, Password, FullName, Email, Phone, Role) " +
-            "VALUES (#{userID}, #{username}, #{password}, #{fullName}, #{email}, #{phone}, #{role})")
+
+    // 插入用户
+    @Insert("INSERT INTO users (card_id, name, user_type, email, phone) VALUES (#{cardId}, #{name}, #{userType}, #{email}, #{phone})")
     int insertUser(User user);
 
-    // 根据 UserID 查询用户
-    @Select("SELECT * FROM Users WHERE UserID = #{userID}")
-    User selectUserById(@Param("userID") String userID);
-
-    // 根据 Username 查询用户
-    @Select("SELECT * FROM Users WHERE Username = #{username}")
-    User selectUserByUsername(@Param("username") String username);
+    // 根据校园卡号查询用户
+    @Select("SELECT * FROM users WHERE card_id = #{cardId}")
+    User getUserByCardId(String cardId);
 
     // 查询所有用户
-    @Select("SELECT * FROM Users")
-    List<User> selectAllUsers();
+    @Select("SELECT * FROM users")
+    List<User> getAllUsers();
 
     // 更新用户信息
-    @Update("UPDATE Users SET Username = #{username}, Password = #{password}, FullName = #{fullName}, " +
-            "Email = #{email}, Phone = #{phone}, Role = #{role} WHERE UserID = #{userID}")
+    @Update("UPDATE users SET name = #{name}, user_type = #{userType}, email = #{email}, phone = #{phone} WHERE card_id = #{cardId}")
     int updateUser(User user);
 
-    // 根据 UserID 删除用户
-    @Delete("DELETE FROM Users WHERE UserID = #{userID}")
-    int deleteUserById(@Param("userID") String userID);
-
-    // 根据 Email 查询用户
-    @Select("SELECT * FROM Users WHERE Email = #{email}")
-    User selectUserByEmail(@Param("email") String email);
-
-    // 根据 Role 查询用户
-    @Select("SELECT * FROM Users WHERE Role = #{role}")
-    List<User> selectUsersByRole(@Param("role") String role);
+    // 根据校园卡号删除用户
+    @Delete("DELETE FROM users WHERE card_id = #{cardId}")
+    int deleteUser(String cardId);
 }

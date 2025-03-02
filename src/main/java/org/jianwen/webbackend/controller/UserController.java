@@ -1,8 +1,7 @@
 package org.jianwen.webbackend.controller;
 
-import org.jianwen.webbackend.DTO.LoginRequest;
+import org.jianwen.webbackend.model.User;
 import org.jianwen.webbackend.service.UserService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,5 +11,9 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+    @GetMapping("/{cardId}")
+    public User getUserByCardId(@PathVariable String cardId) {
+        return userService.selectUserByCardId(cardId);
     }
 }

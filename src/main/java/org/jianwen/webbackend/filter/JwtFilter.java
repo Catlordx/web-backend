@@ -13,6 +13,11 @@ import java.net.http.HttpResponse;
 public class JwtFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        // TODO just for test and it needs to be deleted when all the api are ready!
+        if (request.getRequestURI().startsWith("/api/users/")){
+            chain.doFilter(request, response);
+            return;
+        }
         String token = request.getHeader("Authorization");
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
